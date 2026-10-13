@@ -1,0 +1,49 @@
+name: git-agent candidate checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Disposable checks only; no deployment shares this group.
+concurrency:
+  group: git-agent-ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: ${{ matrix.os }} / native Bash
+    runs-on: ${{ matrix.os }}
+    # Native Windows process startup makes filesystem snapshots slower.
+    timeout-minutes: ${{ matrix.os == 'windows-latest' && 25 || 10 }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # https://github.com/actions/checkout/releases/tag/v7.0.1
+      # https://github.com/actions/checkout/commit/3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Check out candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build, test, and exercise installed command
+        run: |
+          ga_check_bash=bash
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            # Verify system Bash 3.2, including nested calls and shebangs.
+            export PATH="/bin:/usr/bin:$PATH"
+            ga_check_bash=/bin/bash
+          fi
+          "$ga_check_bash" --version
+          git --version
+          "$ga_check_bash" tools/build.sh
+          "$ga_check_bash" tests/run.sh
+          "$ga_check_bash" tools/smoke.sh
