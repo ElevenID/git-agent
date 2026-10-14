@@ -511,7 +511,7 @@ ga_final_gaps() {
     ga_gap 'Verify the installed Codex client, effective instruction chain, models, reviewer roles and actual permissions.'
     ga_gap 'Record real product commands, isolated ports/data/effects, runtime limits and applicable local/CI differences.'
     ga_gap 'Verify GitHub required checks, eligible human premerge approval and release/tag identities in GitHub.'
-    ga_gap 'Set recovery objectives, push source checkpoints, keep generated evidence ignored, clean it after merge, and perform a clean restore drill.'
+    ga_gap 'Set recovery objectives, push source checkpoints, keep generated evidence ignored, clean it after merge or terminal cancellation/supersession, and perform a clean restore drill.'
     ga_gap 'Run applicable upgrade/health/support and acceptance demonstrations; scaffold creation is not product evidence.'
 }
 
@@ -779,10 +779,11 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
     state derived from maintained records. Preserve cancelled/superseded reasons,
     checkpoints and replacement links. Never confuse ready, human-approved,
     published, healthy, or remotely recoverable.
-13. After the feature code merges, remove its local generated evidence and
-    artifacts, including obsolete worktree copies. Keep the merged source, concise
-    goal outcome and PR/CI links. Do not delete another owner's files or a
-    separately required release/operational record.
+13. After work merges or reaches terminal cancellation/supersession, remove its
+    local generated evidence and artifacts, including obsolete worktree copies.
+    Preserve the outcome decision, merged source when applicable, and PR/CI
+    links first. Do not delete another owner's files or a separately required
+    release/operational record.
 
 Use Git, OS, VS Code, Codex and existing product commands directly. Do not create
 a scheduler, execution adapter, state database, third skill, or new command
@@ -934,7 +935,7 @@ evidence, findings, uncertainty, and unverified scope. Each finding has a locati
 impact, observed evidence/reproduction, and required disposition. Preserve the
 independent first result, then record reconciliation and fixes.
 
-After merge, clean local generated evidence and artifacts; retain the concise
+After merge or terminal cancellation/supersession, clean local generated evidence and artifacts; retain the concise
 PR decision, review discussion and hosted check links. Reviewers do not write
 the implementation or grant human approval. Reuse valid native evidence and
 run targeted checks only in authorized scoped environments.
@@ -1254,8 +1255,9 @@ and the assigned plan; keep this file a short entry point.
   configured independent reviews. Changed relevant inputs reopen their checks.
 - Keep generated evidence, logs, screenshots, and build artifacts out of Git.
   Link relevant PR and CI results while work is open; remove local copies after
-  the feature merges. Keep code comments sparse: put change rationale in the PR
-  so commit history and Git blame expose it later.
+  the work merges or is cancelled or superseded, after required records are
+  saved. Keep code comments sparse: put change rationale in the PR so commit
+  history and Git blame expose it later.
 - Obtain human review before every version-producing merge, including hotfixes.
 - Report verification, review, approval, deployment health, remote recovery
   coverage, local-only work, and the next action as separate observations.
@@ -1395,8 +1397,9 @@ Ignore generated evidence and artifact directories in the product `.gitignore`.
 Do not stage logs, screenshots, test output, reviewer transcripts or evidence
 manifests. Keep them in ignored local storage during review; use PR discussion
 and hosted CI checks for concise, source-linked findings. Clean local copies
-after the feature code merges, once the merge and required decisions are
-recorded. Do not use code comments as a change diary; put rationale in the PR.
+after work merges or is cancelled or superseded, once the outcome and required
+decisions are recorded. Do not use code comments as a change diary; put rationale
+in the PR.
 
 | Event | Required work using maintained commands |
 | --- | --- |
@@ -1629,7 +1632,7 @@ version-producing merge retains the human review gate.
 - Each work branch owns its progress record, based on a recorded goal revision.
 - PR discussion and CI checks hold observed development results; link them from
   concise goal records. Generated evidence and artifacts stay ignored and are
-  removed locally after the feature merges.
+  removed locally after merge or terminal cancellation/supersession.
 - Essential distributable guidance stays with the product. Pin required private
   organization guidance and document access; sibling repositories are explicit
   dependencies and are not automatically discovered instructions.
@@ -1691,7 +1694,7 @@ review stale assignments, dependencies, exceptions, and active-work limits.
 Handoff records the writing owner/session, checkpoint, owned resources and next
 action. Reconcile an uncertain old writer before takeover. Publish source branch
 checkpoints first, then the coordinating goal record. Report recovery for every
-included source component. After merge, clean transient local evidence and
+included source component. After merge or terminal cancellation/supersession, clean transient local evidence and
 artifacts; keep concise decisions and PR/CI links.
 GIT_AGENT_LITERAL_TEMPLATE_14_END
             ;;
@@ -1743,7 +1746,7 @@ need their own verified configuration and retention.
 Configure the product `.gitignore` to exclude generated evidence and artifact
 directories before starting a goal. Keep review logs and screenshots outside
 Git while a PR is open, link the PR and CI checks from concise goal records,
-then remove local copies after the feature code merges. Keep code comments
+then remove local copies after merge or terminal cancellation/supersession. Keep code comments
 minimal; place historical rationale in the PR for Git blame to surface.
 
 ## Product acceptance record

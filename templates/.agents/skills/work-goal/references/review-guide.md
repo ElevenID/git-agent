@@ -70,7 +70,7 @@ evidence, findings, uncertainty, and unverified scope. Each finding has a locati
 impact, observed evidence/reproduction, and required disposition. Preserve the
 independent first result, then record reconciliation and fixes.
 
-After merge, clean local generated evidence and artifacts; retain the concise
+After merge or terminal cancellation/supersession, clean local generated evidence and artifacts; retain the concise
 PR decision, review discussion and hosted check links. Reviewers do not write
 the implementation or grant human approval. Reuse valid native evidence and
 run targeted checks only in authorized scoped environments.

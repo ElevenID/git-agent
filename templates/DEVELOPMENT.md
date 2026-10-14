@@ -69,8 +69,9 @@ Ignore generated evidence and artifact directories in the product `.gitignore`.
 Do not stage logs, screenshots, test output, reviewer transcripts or evidence
 manifests. Keep them in ignored local storage during review; use PR discussion
 and hosted CI checks for concise, source-linked findings. Clean local copies
-after the feature code merges, once the merge and required decisions are
-recorded. Do not use code comments as a change diary; put rationale in the PR.
+after work merges or is cancelled or superseded, once the outcome and required
+decisions are recorded. Do not use code comments as a change diary; put rationale
+in the PR.
 
 | Event | Required work using maintained commands |
 | --- | --- |

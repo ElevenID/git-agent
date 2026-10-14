@@ -27,7 +27,7 @@ version-producing merge retains the human review gate.
 - Each work branch owns its progress record, based on a recorded goal revision.
 - PR discussion and CI checks hold observed development results; link them from
   concise goal records. Generated evidence and artifacts stay ignored and are
-  removed locally after the feature merges.
+  removed locally after merge or terminal cancellation/supersession.
 - Essential distributable guidance stays with the product. Pin required private
   organization guidance and document access; sibling repositories are explicit
   dependencies and are not automatically discovered instructions.
@@ -89,5 +89,5 @@ review stale assignments, dependencies, exceptions, and active-work limits.
 Handoff records the writing owner/session, checkpoint, owned resources and next
 action. Reconcile an uncertain old writer before takeover. Publish source branch
 checkpoints first, then the coordinating goal record. Report recovery for every
-included source component. After merge, clean transient local evidence and
+included source component. After merge or terminal cancellation/supersession, clean transient local evidence and
 artifacts; keep concise decisions and PR/CI links.

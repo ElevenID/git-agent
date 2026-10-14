@@ -45,7 +45,7 @@ need their own verified configuration and retention.
 Configure the product `.gitignore` to exclude generated evidence and artifact
 directories before starting a goal. Keep review logs and screenshots outside
 Git while a PR is open, link the PR and CI checks from concise goal records,
-then remove local copies after the feature code merges. Keep code comments
+then remove local copies after merge or terminal cancellation/supersession. Keep code comments
 minimal; place historical rationale in the PR for Git blame to surface.
 
 ## Product acceptance record

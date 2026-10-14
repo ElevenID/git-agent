@@ -129,7 +129,7 @@ remains required before a version-producing merge.
 
 Generated evidence, logs, screenshots and build artifacts belong in ignored
 local paths while work is under review. Keep concise outcomes and PR/CI links in
-Git; remove local generated copies after feature code merges. Source comments
+Git; remove local generated copies after work merges or is cancelled or superseded, once required decisions and records are preserved. Source comments
 should be sparse; use PR discussion and Git blame for change history.
 The initializer preserves an existing `.gitignore`; adoption includes adding
 evidence and artifact ignore rules in the product repository.

@@ -70,10 +70,11 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
     state derived from maintained records. Preserve cancelled/superseded reasons,
     checkpoints and replacement links. Never confuse ready, human-approved,
     published, healthy, or remotely recoverable.
-13. After the feature code merges, remove its local generated evidence and
-    artifacts, including obsolete worktree copies. Keep the merged source, concise
-    goal outcome and PR/CI links. Do not delete another owner's files or a
-    separately required release/operational record.
+13. After work merges or reaches terminal cancellation/supersession, remove its
+    local generated evidence and artifacts, including obsolete worktree copies.
+    Preserve the outcome decision, merged source when applicable, and PR/CI
+    links first. Do not delete another owner's files or a separately required
+    release/operational record.
 
 Use Git, OS, VS Code, Codex and existing product commands directly. Do not create
 a scheduler, execution adapter, state database, third skill, or new command
