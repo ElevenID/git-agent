@@ -5,7 +5,7 @@ Codex extension. The command places reviewable guidance and two instruction-only
 skills beside the code, identifies adoption gaps, and preserves existing project
 content.
 
-**Version 0.2.0 is one Bash executable with embedded templates.** Running,
+**Version 0.2.1 is one Bash executable with embedded templates.** Running,
 building, installing, and testing it uses Bash, Git, and the ordinary Unix
 utilities supplied by the supported shell environment. It requires no Python,
 Node.js, jq, package manager, language libraries, agent service, or custom daemon.
@@ -127,6 +127,13 @@ rounds. Counts and guides are project policy and can be changed through accepted
 governance. Model selection uses supported native Codex settings. Human review
 remains required before a version-producing merge.
 
+Generated evidence, logs, screenshots and build artifacts belong in ignored
+local paths while work is under review. Keep concise outcomes and PR/CI links in
+Git; remove local generated copies after feature code merges. Source comments
+should be sparse; use PR discussion and Git blame for change history.
+The initializer preserves an existing `.gitignore`; adoption includes adding
+evidence and artifact ignore rules in the product repository.
+
 ## Preservation, reruns, and concurrent initialization
 
 Existing guidance is project content. Recognized governance, development,
@@ -225,7 +232,7 @@ After a workstation loss, restore Git and the supported Bash environment, clone
 that revision, run the checks, and install the single command. No language
 package environment needs reconstructing for this tool.
 
-Product recovery starts from retained goal and branch checkpoints. Adopted
+Product recovery starts from retained goal and source-branch checkpoints. Adopted
 instructions and skills remain usable after cloning, even if the global
-initializer is absent. Account access, credentials, external evidence, runtime
+initializer is absent. Account access, credentials, transient review evidence, runtime
 inputs, and production data need their own recorded recovery paths.

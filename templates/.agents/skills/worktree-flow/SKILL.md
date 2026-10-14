@@ -33,9 +33,9 @@ ownership, cleanup, checkpoints or restoration.
    acceptance; record actual command, environment, assertions and outcome.
 7. Update only the assigned branch record, checkpoint at meaningful increments
    and handoff, and give the integration owner exact revisions/evidence. Confirm
-   branch/artifact publication before coordinating the whole-goal checkpoint.
-8. Stop/clean only owned processes and scoped resources. Preserve required refs
-   and artifacts first; reconcile partial cleanup, leaving other worktrees usable.
+   branch publication and PR/CI links before coordinating the whole-goal checkpoint.
+8. Stop/clean only owned processes and scoped resources. Preserve required source
+   refs first; reconcile partial cleanup, leaving other worktrees usable.
    Report endpoint/resource state, evidence, remote coverage, local-only remainder
    and next action.
 

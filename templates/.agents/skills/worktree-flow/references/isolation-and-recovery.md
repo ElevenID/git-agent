@@ -40,13 +40,13 @@ Simultaneous autonomous reassignment across computers is outside this baseline.
 ## Publish a recoverable checkpoint
 
 1. Update the branch work record and consequential decisions.
-2. Commit intentional source and compact necessary evidence; preserve unrelated
-   staged/uncommitted work and clearly describe incomplete work.
-3. Retain indispensable non-Git artifacts, or declare them local-only.
+2. Commit intentional source and concise work records only; keep generated
+   evidence and artifacts ignored and outside Git. Preserve unrelated work.
+3. Link available PR/CI results and identify local-only review material.
 4. Push the intended authorized work/checkpoint ref and verify that its remote
    revision reaches the intended commit. Record confirmation time and remainder.
-5. Publish every required component/branch and artifact BEFORE the coordinating
-   canonical goal update that indexes them. Confirm that update too.
+5. Publish every required source/component branch before the coordinating goal
+   update; identify PR/CI runs used to review it. Confirm the update too.
 6. Report coverage for the canonical record and all included components against
    declared retention and RPO/RTO targets. One successful branch push does not
    establish whole-goal recovery.
@@ -55,15 +55,15 @@ Use milestones, pause/handoff and pre-cleanup events. While active, report lates
 confirmation age and unpushed work. These instructions offer no unattended timer
 when Codex is inactive. Retain refs reaching required checkpoints before branch
 deletion/rewrite. Retrieve indispensable artifacts; saved URLs alone are not proof.
-Review publication for credentials/sensitive data and retain artifact ownership,
-digest and retention commitment. Do not silently assume expired artifacts exist.
+Review publication for credentials/sensitive data. Hosted logs may expire; do
+not claim durable recovery from a link alone.
 
 ## Close an assigned worktree safely
 
 Immediately before removal, use Git to confirm the target path, branch, current
 head, assigned owner, and clean status. Confirm that the exact work is integrated
-or intentionally abandoned and that required refs, evidence, and artifacts are
-retained. A branch name or stale earlier audit does not prove integration; a
+  or intentionally abandoned and that required source refs and PR decisions are
+  retained. A branch name or stale earlier audit does not prove integration; a
 squash merge needs evidence tied to its exact reviewed head.
 
 Inspect and close one assigned worktree at a time, from outside that worktree.

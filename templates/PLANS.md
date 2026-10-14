@@ -25,8 +25,9 @@ version-producing merge retains the human review gate.
 - Canonical goal-wide state lives on its declared integration ref, maintained by
   the integration owner. A single work branch can also be that ref.
 - Each work branch owns its progress record, based on a recorded goal revision.
-- Native reports/artifacts hold observed results; link them instead of copying
-  large logs. Human-friendly status is derived from these records.
+- PR discussion and CI checks hold observed development results; link them from
+  concise goal records. Generated evidence and artifacts stay ignored and are
+  removed locally after the feature merges.
 - Essential distributable guidance stays with the product. Pin required private
   organization guidance and document access; sibling repositories are explicit
   dependencies and are not automatically discovered instructions.
@@ -48,7 +49,7 @@ Governing baseline, risk/review profile, pending control changes:
 Canonical repository/ref/path and integration owner:
 Status and next action:
 
-| Slice | Branch/ref | Writer/role | Plan revision | Dependencies | Included revision | Work/evidence links |
+| Slice | Branch/ref | Writer/role | Plan revision | Dependencies | Included revision | PR/CI links |
 | --- | --- | --- | --- | --- | --- | --- |
 
 Progress, discoveries, consequential decisions, blockers:
@@ -59,7 +60,7 @@ Exceptions/debt with owner and expiry/reconsideration:
 Release candidate and actual human approval:
 Actual merged M, artifact D, version/tag, demo, deployed health/owner:
 
-| Recovery component | Remote ref or retained artifact | Confirmed revision/digest | Time | Retention/retrieval |
+| Recovery component | Remote source ref or required release artifact | Confirmed revision/digest | Time | Retention/retrieval |
 | --- | --- | --- | --- | --- |
 
 Whole-goal coverage, confirmation age and recovery targets:
@@ -86,6 +87,7 @@ Changed relevant inputs reopen verification/review. At start, resume and handoff
 review stale assignments, dependencies, exceptions, and active-work limits.
 
 Handoff records the writing owner/session, checkpoint, owned resources and next
-action. Reconcile an uncertain old writer before takeover. Publish branch and
-artifact checkpoints first, then the coordinating goal record. Report recovery
-for every included component, not just the most recently pushed branch.
+action. Reconcile an uncertain old writer before takeover. Publish source branch
+checkpoints first, then the coordinating goal record. Report recovery for every
+included source component. After merge, clean transient local evidence and
+artifacts; keep concise decisions and PR/CI links.

@@ -41,21 +41,23 @@ or decide a finding. Do not create hypothetical gates outside accepted scope.
 
 Record or link: candidate S and base, relevant inputs/toolchain/config, command
 and working directory, environment/resource scope, selected checks/assertions,
-actual outcome/exit status, time, and artifact identity/digest where relevant.
-Record dirty/unsupported conditions and unverified areas. Keep compact reports
-in Git; retain large artifacts with an owner, commitment and verified retrieval.
-Review logs/recordings for credentials or sensitive data before publication.
+actual outcome/exit status, time, and PR/CI run identity where relevant.
+Record dirty/unsupported conditions and unverified areas. Put review findings
+and change rationale in the PR. Keep generated reports, logs, screenshots and
+other evidence outside Git in ignored local paths while review is open; link
+hosted check results when available. Review any shared output for secrets.
 
 Expected results must have a basis independent of the same implementation.
 Calibrate material model/guide/tool changes against the known-good/bad cases in
 governance. Tests and model agreement are observations, not automatic proof.
 
-Separate source S from a later report commit E that describes S. Do not require
-a file to contain its own commit hash. Explain any report-only differences;
-renew applicable evidence when relevant code, configuration, tests, base or
+Bind the review to exact source S, base and PR head. Do not create a report
+commit solely to store evidence. Explain any report-only changes in the PR;
+renew applicable checks when relevant code, configuration, tests, base or
 release inputs change. Review must still cover the current candidate.
 
-Use bounded retries and retain attempts. Flaky/quarantined checks require a
+Use bounded retries and retain failed attempts until disposition in the PR or
+check history. Flaky/quarantined checks require a
 recorded reason, scope, owner, expiry/review trigger, and replacement coverage
 under accepted authority. Rerunning until green or silently dropping a required
 criterion does not satisfy it. Missing, unexpectedly skipped, cancelled or empty
@@ -68,7 +70,9 @@ evidence, findings, uncertainty, and unverified scope. Each finding has a locati
 impact, observed evidence/reproduction, and required disposition. Preserve the
 independent first result, then record reconciliation and fixes.
 
-Reviewers do not write the implementation or grant human approval. Reuse valid
-native evidence and run targeted checks only in authorized scoped environments.
+After merge, clean local generated evidence and artifacts; retain the concise
+PR decision, review discussion and hosted check links. Reviewers do not write
+the implementation or grant human approval. Reuse valid native evidence and
+run targeted checks only in authorized scoped environments.
 If execution is unavailable, state that limit; never fabricate success. Limited
 thread capacity permits sequential independent reviews, not a reduced N.

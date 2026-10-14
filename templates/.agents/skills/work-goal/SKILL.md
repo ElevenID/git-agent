@@ -32,7 +32,9 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    dependencies for equivalent behavior. Identify the canonical implementation
    and record why this slice reuses, extends, replaces, or adds one. Keep one
    source of truth for shared behavior; do not extract an abstraction solely
-   because unrelated code happens to look alike.
+   because unrelated code happens to look alike. Keep source comments to the
+   minimum needed to explain non-obvious contracts or behavior; put the change
+   rationale and investigation in the PR for Git history and blame.
 6. Update each branch's own progress, decisions, blockers, evidence, and next
    action. Let the integration owner maintain canonical goal state. Integrate
    small accepted increments early, refresh affected dependents, and preserve
@@ -53,10 +55,9 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    verification and current review coverage. Stop at R rounds with
    `needs-decision` if blockers remain. Do not silently quarantine criteria.
 10. Checkpoint meaningful increments and before handoff/cleanup. Follow the
-    worktree-flow recovery reference: publish components and required artifacts
-    before the canonical goal record; confirm all remote revisions, retention,
-    freshness and actual indispensable artifact retrieval. State partial coverage
-    and local-only work explicitly.
+    worktree-flow recovery reference: push source and goal records, and link
+    reviewable PR/CI evidence without committing generated evidence or artifacts.
+    Confirm remote revisions and state any local-only gaps explicitly.
 
 ## Release, close, and report
 
@@ -69,6 +70,10 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
     state derived from maintained records. Preserve cancelled/superseded reasons,
     checkpoints and replacement links. Never confuse ready, human-approved,
     published, healthy, or remotely recoverable.
+13. After the feature code merges, remove its local generated evidence and
+    artifacts, including obsolete worktree copies. Keep the merged source, concise
+    goal outcome and PR/CI links. Do not delete another owner's files or a
+    separately required release/operational record.
 
 Use Git, OS, VS Code, Codex and existing product commands directly. Do not create
 a scheduler, execution adapter, state database, third skill, or new command

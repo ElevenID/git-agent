@@ -42,6 +42,12 @@ into each product, and document any required private repository/access dependenc
 GitHub settings, secure account recovery, runtime resources and large artifacts
 need their own verified configuration and retention.
 
+Configure the product `.gitignore` to exclude generated evidence and artifact
+directories before starting a goal. Keep review logs and screenshots outside
+Git while a PR is open, link the PR and CI checks from concise goal records,
+then remove local copies after the feature code merges. Keep code comments
+minimal; place historical rationale in the PR for Git blame to surface.
+
 ## Product acceptance record
 
 These are demonstrations to perform, not completed test results. Record exact
@@ -60,7 +66,7 @@ Product-specific capabilities need an explicit scope/risk rationale.
 | A07 | Known defect, empty selection, stale evidence, false positive and flaky-check dispositions. |
 | A08 | N/C/R behavior, independent current-candidate reviews, fix/review renewal. |
 | A09 | Early integration, dependent refresh, stale/cancelled work and bounded exceptions. |
-| A10 | Partial then complete whole-goal checkpoints; artifact retrieval and measured clean restore/RPO/RTO. |
+| A10 | Partial then complete source checkpoints; PR/CI linkage, local evidence cleanup, and measured clean restore/RPO/RTO. |
 | A11 | Deliberate checkpoint/candidate CI events, safe cancellation scope and measured cost/feedback. |
 | A12 | Actual current human premerge approval and binding of M, D, tag, assertions and recorded demo. |
 | A13 | Applicable upgrade/coexistence/interruption/recovery and observed health/bad-setting detection. |
