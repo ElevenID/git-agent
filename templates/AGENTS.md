@@ -33,6 +33,11 @@ and the assigned plan; keep this file a short entry point.
   permissions; prose and separate checkouts do not establish isolation.
 - Verify the combined fixed candidate, preserve real evidence, and complete the
   configured independent reviews. Changed relevant inputs reopen their checks.
+- Keep generated evidence, logs, screenshots, and build artifacts out of Git.
+  Link relevant PR and CI results while work is open; remove local copies after
+  the work merges or is cancelled or superseded, after required records are
+  saved. Keep code comments sparse: put change rationale in the PR so commit
+  history and Git blame expose it later.
 - Obtain human review before every version-producing merge, including hotfixes.
 - Report verification, review, approval, deployment health, remote recovery
   coverage, local-only work, and the next action as separate observations.

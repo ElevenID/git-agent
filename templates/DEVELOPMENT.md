@@ -65,6 +65,14 @@ during execution. HEAD alone does not identify code served from a dirty worktree
 Read `.agents/skills/work-goal/references/review-guide.md` for evidence fields and
 flaky-check handling.
 
+Ignore generated evidence and artifact directories in the product `.gitignore`.
+Do not stage logs, screenshots, test output, reviewer transcripts or evidence
+manifests. Keep them in ignored local storage during review; use PR discussion
+and hosted CI checks for concise, source-linked findings. Clean local copies
+after work merges or is cancelled or superseded, once the outcome and required
+decisions are recorded. Do not use code comments as a change diary; put rationale
+in the PR.
+
 | Event | Required work using maintained commands |
 | --- | --- |
 | Active edits | Live feedback and focused local checks |
@@ -113,19 +121,20 @@ separate scope decision. Production-data recovery is separate from development.
 | Maximum tolerable active-work loss / RPO | UNCONFIGURED |
 | Target time to resume useful development / RTO | UNCONFIGURED |
 | Retained work/checkpoint refs and required private guidance | Per-goal record |
-| Indispensable artifact retention duration, owner, digest, retrieval | UNCONFIGURED |
+| Separately required release/operational artifact retention | UNCONFIGURED |
 | Access, machine setup and native GitHub/Codex settings recovery | UNCONFIGURED |
 | Restore-drill triggers and measured loss/resumption time | UNCONFIGURED |
 
 Checkpoint completed increments, pause/handoff, and before destructive cleanup.
-Publish each component/work branch and required artifact before its coordinating
-goal record. Confirm remote revisions and actual indispensable artifact retrieval;
-report incomplete coverage and local-only work. A local commit is not cloud backup.
+Publish each component/work branch before its coordinating goal record. Confirm
+remote revisions and link the relevant PR/CI checks; report incomplete coverage
+and local-only work. Generated development evidence is transient and ignored.
+A local commit is not cloud backup.
 Report confirmation time/age against targets while active. These instructions do
 not provide an unattended timed backup while Codex is inactive.
 
 Exercise a clean restore after material setup/access/dependency/recovery changes
 and at the product's chosen reconsideration events. Follow the worktree-flow
-recovery reference. Retrieve artifacts rather than trusting URLs. Retain refs and
-artifact commitments before cleanup. Do not invent the amount lost after a real
+recovery reference. Retrieve separately required release/operational artifacts
+rather than trusting URLs. Retain source refs before cleanup. Do not invent the amount lost after a real
 failure when it is unknown.
