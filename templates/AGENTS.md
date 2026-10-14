@@ -33,6 +33,8 @@ and the assigned plan; keep this file a short entry point.
   permissions; prose and separate checkouts do not establish isolation.
 - Verify the combined fixed candidate, preserve real evidence, and complete the
   configured independent reviews. Changed relevant inputs reopen their checks.
+- Address substantive PR comments, resolve review conversations, and verify
+  dispositions on the current candidate before merge.
 - Obtain human review before every version-producing merge, including hotfixes.
 - Report verification, review, approval, deployment health, remote recovery
   coverage, local-only work, and the next action as separate observations.

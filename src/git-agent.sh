@@ -1,8 +1,8 @@
 # Runtime core for the standalone Bash bundle. tools/build.sh appends literal
 # template functions and the single main dispatch. Bash 3.2 syntax only.
 
-GA_VERSION=0.2.0
-GA_TEMPLATE_VERSION=0.2.0
+GA_VERSION=0.2.1
+GA_TEMPLATE_VERSION=0.2.1
 GA_MAX_FILES=5000
 GA_MAX_BYTES=2097152
 

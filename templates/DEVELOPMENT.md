@@ -72,6 +72,7 @@ flaky-check handling.
 | Combined candidate | Fixed inputs and the selected required verification set |
 | Reviewer | Independent inspection and warranted targeted checks |
 | Candidate change | Renew applicable verification/review coverage |
+| PR feedback | Reproduce findings, correct valid issues, verify the new head, and record dispositions |
 | Version release | Actual merged-source, artifact, demo and promotion checks |
 
 Use architecture's impact map, including transitive consumers and changed
@@ -81,6 +82,15 @@ Maintain a stable aggregate required integration check that validates selection
 and success of every selected required check, including module/interface checks
 and product lanes. Missing, skipped, cancelled and failed selected checks do not
 pass. Verify merge-queue candidates where applicable.
+
+Before handing off a PR for merge, read its current inline and general comments,
+automated findings, and check failures. Follow the PR feedback decision rule in
+`{{GOVERNANCE_PATH}}`: fix valid issues on the branch, add meaningful regression
+coverage where warranted, run affected checks on the corrected head, and reply
+with evidence. Reopen applicable review after material changes. Check that every
+review conversation is resolved and no substantive general comment remains
+undispositioned. Preserve the human maintainer's acceptance of any evidence-backed
+false positive or deferral; do not wait indefinitely for an unavailable bot.
 
 Use distinct checkpoint/candidate/release triggers. An open PR may run CI on
 every push; use explicit retained checkpoint refs when needed and advance the
