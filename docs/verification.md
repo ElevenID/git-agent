@@ -14,7 +14,7 @@ initialization, preview, preservation of existing work, conflicts, reruns,
 failure recovery, and native Git dispatch. The smoke check installs the command
 outside the checkout and exercises it through Git.
 
-## Version 0.2.1 candidate evidence
+## Pre-integration PR #1 candidate evidence (version 0.2.1)
 
 On 14 October 2026, [PR #1's exact source head
 `fcf34423a9fb95f0759793a81a9df82a6c88d920`](https://github.com/ElevenID/git-agent/commit/fcf34423a9fb95f0759793a81a9df82a6c88d920)
@@ -31,8 +31,8 @@ The generated executable's Git blob identity was
 
 Windows used Git Bash. Its skips cover unsupported filename and native symlink
 fixtures. The packaged smoke check passed on all three hosts. This evidence
-covers the recorded candidate. Checks on any later PR head are the current merge
-evidence.
+covers that earlier PR candidate. The current 0.2.2 candidate requires its own
+exact-head checks before merge.
 
 ## Historical version 0.2.0 evidence
 
@@ -40,7 +40,8 @@ On 13 October 2026, the merged 0.2.0 source passed the build, all **52 tests**
 with no skips, and the packaged smoke check under Bash 5.2.21 and Git 2.43.0.
 That older executable's Git blob identity was
 `95e9f893d85ebab6d3157a6ce9f300c775fd9b8c`. These observations cover
-that earlier candidate in the tested environment; they do not certify 0.2.1.
+that earlier candidate in the tested environment; they do not certify later
+versions.
 
 The [CI workflow](../.github/workflows/ci.yml) runs the same checks on standard
 Ubuntu, macOS, and Windows runners. macOS explicitly uses system Bash 3.2;

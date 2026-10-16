@@ -1,8 +1,8 @@
 # Runtime core for the standalone Bash bundle. tools/build.sh appends literal
 # template functions and the single main dispatch. Bash 3.2 syntax only.
 
-GA_VERSION=0.2.1
-GA_TEMPLATE_VERSION=0.2.1
+GA_VERSION=0.2.2
+GA_TEMPLATE_VERSION=0.2.2
 GA_MAX_FILES=5000
 GA_MAX_BYTES=2097152
 
@@ -509,7 +509,7 @@ ga_final_gaps() {
     ga_gap 'Verify the installed Codex client, effective instruction chain, models, reviewer roles and actual permissions.'
     ga_gap 'Record real product commands, isolated ports/data/effects, runtime limits and applicable local/CI differences.'
     ga_gap 'Verify GitHub required checks, eligible human premerge approval and release/tag identities in GitHub.'
-    ga_gap 'Set recovery objectives, retain/push whole-goal checkpoints and artifacts, and perform a clean restore drill.'
+    ga_gap 'Set recovery objectives, push source checkpoints, keep generated evidence ignored, clean it after merge or terminal cancellation/supersession, and perform a clean restore drill.'
     ga_gap 'Run applicable upgrade/health/support and acceptance demonstrations; scaffold creation is not product evidence.'
 }
 

@@ -27,11 +27,11 @@ Actual M, artifact D, tag, demo/assertions where available:
 Upgrade/recovery rehearsal and remaining applicability checks:
 Deployment: observed state/health/time and operational owner:
 
-Recovery: canonical goal ref plus EVERY included branch/component/artifact:
-Confirmed remote revisions/time/age, retention and retrieval evidence:
+Recovery: canonical goal ref plus EVERY included source branch/component:
+Confirmed remote revisions/time/age and PR/CI links:
 Coverage: complete for listed scope or explicit missing parts:
 RPO/RTO targets and measured drill evidence or gap:
-Local-only remainder:
+Local-only evidence while work is open; cleanup after merge:
 
 Next action, responsible owner, and concrete decision needed if any:
 ```
