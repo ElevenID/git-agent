@@ -54,6 +54,11 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    Missing reviews do not count. A fix creates a new candidate; renew applicable
    verification and current review coverage. Stop at R rounds with
    `needs-decision` if blockers remain. Do not silently quarantine criteria.
+   Inspect PR review threads and general comments, including automated findings;
+   correct valid issues and record a disposition for each substantive concern.
+   An authorized human maintainer may accept an evidence-backed false positive
+   or deferral when the original commenter is unavailable. Do not merge with an
+   unresolved blocker or claim an unconfigured conversation-resolution gate.
 10. Checkpoint meaningful increments and before handoff/cleanup. Follow the
     worktree-flow recovery reference: push source and goal records, and link
     reviewable PR/CI evidence without committing generated evidence or artifacts.

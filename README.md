@@ -5,7 +5,7 @@ Codex extension. The command places reviewable guidance and two instruction-only
 skills beside the code, identifies adoption gaps, and preserves existing project
 content.
 
-**Version 0.2.1 is one Bash executable with embedded templates.** Running,
+**Version 0.2.2 is one Bash executable with embedded templates.** Running,
 building, installing, and testing it uses Bash, Git, and the ordinary Unix
 utilities supplied by the supported shell environment. It requires no Python,
 Node.js, jq, package manager, language libraries, agent service, or custom daemon.

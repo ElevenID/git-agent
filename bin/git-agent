@@ -3,8 +3,8 @@
 # Runtime core for the standalone Bash bundle. tools/build.sh appends literal
 # template functions and the single main dispatch. Bash 3.2 syntax only.
 
-GA_VERSION=0.2.1
-GA_TEMPLATE_VERSION=0.2.1
+GA_VERSION=0.2.2
+GA_TEMPLATE_VERSION=0.2.2
 GA_MAX_FILES=5000
 GA_MAX_BYTES=2097152
 
@@ -763,6 +763,11 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    Missing reviews do not count. A fix creates a new candidate; renew applicable
    verification and current review coverage. Stop at R rounds with
    `needs-decision` if blockers remain. Do not silently quarantine criteria.
+   Inspect PR review threads and general comments, including automated findings;
+   correct valid issues and record a disposition for each substantive concern.
+   An authorized human maintainer may accept an evidence-backed false positive
+   or deferral when the original commenter is unavailable. Do not merge with an
+   unresolved blocker or claim an unconfigured conversation-resolution gate.
 10. Checkpoint meaningful increments and before handoff/cleanup. Follow the
     worktree-flow recovery reference: push source and goal records, and link
     reviewable PR/CI evidence without committing generated evidence or artifacts.
@@ -1253,6 +1258,8 @@ and the assigned plan; keep this file a short entry point.
   permissions; prose and separate checkouts do not establish isolation.
 - Verify the combined fixed candidate, preserve real evidence, and complete the
   configured independent reviews. Changed relevant inputs reopen their checks.
+- Address substantive PR comments, resolve review conversations, and verify
+  dispositions on the current candidate before merge.
 - Keep generated evidence, logs, screenshots, and build artifacts out of Git.
   Link relevant PR and CI results while work is open; remove local copies after
   the work merges or is cancelled or superseded, after required records are
@@ -1408,6 +1415,7 @@ in the PR.
 | Combined candidate | Fixed inputs and the selected required verification set |
 | Reviewer | Independent inspection and warranted targeted checks |
 | Candidate change | Renew applicable verification/review coverage |
+| PR feedback | Reproduce findings, correct valid issues, verify the new head, and record dispositions |
 | Version release | Actual merged-source, artifact, demo and promotion checks |
 
 Use architecture's impact map, including transitive consumers and changed
@@ -1417,6 +1425,15 @@ Maintain a stable aggregate required integration check that validates selection
 and success of every selected required check, including module/interface checks
 and product lanes. Missing, skipped, cancelled and failed selected checks do not
 pass. Verify merge-queue candidates where applicable.
+
+Before handing off a PR for merge, read its current inline and general comments,
+automated findings, and check failures. Follow the PR feedback decision rule in
+`{{GOVERNANCE_PATH}}`: fix valid issues on the branch, add meaningful regression
+coverage where warranted, run affected checks on the corrected head, and reply
+with evidence. Reopen applicable review after material changes. Check that every
+review conversation is resolved and no substantive general comment remains
+undispositioned. Preserve the human maintainer's acceptance of any evidence-backed
+false positive or deferral; do not wait indefinitely for an unavailable bot.
 
 Use distinct checkpoint/candidate/release triggers. An open PR may run CI on
 every push; use explicit retained checkpoint refs when needed and advance the
@@ -1558,6 +1575,32 @@ After R rounds, unresolved work is `needs-decision`, never an automatic pass.
 Before claiming ready, require the selected checks, all N completed applicable
 reviews, resolved blockers, applicable intended-use validation, and current
 exception dispositions for the candidate.
+
+## PR feedback and merge readiness
+
+Inspect every current PR review thread, general comment, automated finding,
+security alert, and failed check before merge. Distinguish informational status
+messages from substantive concerns. Reproduce and correct valid defects on the
+PR branch, run focused regression checks and affected gates on the combined
+corrected head, and reply with the fix and evidence. An outdated diff location,
+passing check, or later approval does not by itself dispose of a reported defect.
+
+Resolve each review conversation only after its concern is corrected and
+verified, or an evidence-backed no-change or deferral decision is accepted by
+an authorized human maintainer. The original commenter need not be available:
+one-shot bots and absent reviewers do not have an indefinite veto. Record who
+accepted the disposition, why, and any follow-up owner and reconsideration
+trigger. A real unresolved blocker remains open; if no authorized maintainer can
+decide it, mark the candidate `needs-decision` and do not merge. For substantive
+general comments without a resolution control, record the same disposition in
+a reply and inspect the conversation again before merge.
+
+Require GitHub conversation resolution on every PR target branch where native
+protection is supported. Verify the effective branch rule, administrator and
+bypass behavior, and current unresolved-thread state; prose and a workflow file
+do not activate a GitHub merge gate. Where the hosting plan cannot enforce it,
+the designated human merge reviewer must check the comments and dispositions
+manually. Do not claim technical enforcement for an unprotected branch.
 
 ## Actual capabilities
 
