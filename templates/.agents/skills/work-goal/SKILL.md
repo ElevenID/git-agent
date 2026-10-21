@@ -17,7 +17,9 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    rules; never let a candidate weaken the conditions for its own acceptance.
 3. Resolve integration and branch writers, repository administration ownership,
    dependencies, stale/blocked work, exceptions, capacity, and recovery gaps.
-   Reconcile an uncertain old writer before takeover.
+   Reconcile relevant existing branches/PRs before creating more alternatives;
+   identify the canonical integration stream and selected changes. Reconcile an
+   uncertain old writer before takeover.
 4. Select the next ready authorized slice and its affected products/evidence.
    Refine steps within scope. If required intent, authority, or setup is missing,
    prepare the concrete proposal/gap and continue independent authorized work;
@@ -38,7 +40,9 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
 6. Update each branch's own progress, decisions, blockers, evidence, and next
    action. Let the integration owner maintain canonical goal state. Integrate
    small accepted increments early, refresh affected dependents, and preserve
-   the target's applicable gates.
+   the target's applicable gates. Continue authorized review/check/merge work
+   until complete or a concrete gate needs another owner or decision; opening
+   a PR alone is a checkpoint, not completion.
 7. Assemble the combined candidate S with fixed source/base/configuration and
    required inputs. Hold them stable during acceptance checks. Verify selected
    required checks and intended-use validation. Treat live-edit results as
@@ -75,11 +79,15 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
     state derived from maintained records. Preserve cancelled/superseded reasons,
     checkpoints and replacement links. Never confuse ready, human-approved,
     published, healthy, or remotely recoverable.
-13. After work merges or reaches terminal cancellation/supersession, remove its
-    local generated evidence and artifacts, including obsolete worktree copies.
-    Preserve the outcome decision, merged source when applicable, and PR/CI
-    links first. Do not delete another owner's files or a separately required
-    release/operational record.
+13. Reconcile the goal's checkouts at every handoff through `$worktree-flow`:
+    active with owner/next action, parked with verified checkpoint, removed,
+    or deferred with a concrete data/activity/recovery blocker and owner.
+    Unfinished branches may be retained without idle full checkouts after safe
+    publication/parking; their work remains open. After merge or explicit terminal
+    supersession/cancellation, preserve the outcome and PR/CI links, then remove
+    obsolete checkout copies and transient generated artifacts. Account for
+    completed verification copies too. Preserve another owner's files, needed
+    review evidence and separately required release/operational records.
 
 Use Git, OS, VS Code, Codex and existing product commands directly. Do not create
 a scheduler, execution adapter, state database, third skill, or new command

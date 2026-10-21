@@ -16,6 +16,33 @@ outside the checkout and exercises it through Git.
 
 ## Version 0.2.2 candidate evidence
 
+### Branch and checkout lifecycle follow-up
+
+On 21 October 2026 UTC, the lifecycle follow-up rebuilt the standalone executable
+with Git blob identity `b53ea9b749ec596c362a16673a776a6c8bfd5666`.
+It updates the development instructions and both instruction-only skills without
+adding a cleanup command, scheduler, automatic merge, or approval bypass.
+
+| Local host | Tests | Observed toolchain |
+| --- | --- | --- |
+| Linux (WSL) | 53 passed, 0 failed, 0 skipped | Bash 5.2.21, Git 2.43.0 |
+| Windows (Git Bash, isolated cases with up to four workers) | 47 passed, 0 failed, 6 skipped | Bash 5.2.37, Git 2.53.0.windows.2 |
+
+The new native-Git fixture publishes an unfinished branch to a disposable local
+remote, parks and restores its checkout without merging or losing the source,
+and checks refusal of no-force removal with untracked work. It also inventories
+ignored configuration, which must be inspected separately from Git cleanliness.
+Both packaged smoke checks, skill validators, and `git diff --check` passed.
+These tests exercise Git/initializer mechanics, not autonomous model compliance.
+
+The Linux suite passed from a neutral working directory. An initial invocation
+inside the Windows-created linked checkout failed on its Windows Git-directory
+pointer and is not qualifying evidence. Windows skips cover unsupported filename
+and native-symlink fixtures. Fresh exact-head hosted CI and eligible human review
+are still required before this version-producing PR merges.
+
+### Earlier integrated candidate
+
 On 16 October 2026, [PR #1's integrated source head
 `cc4478690a75cd991fef54724b4ceae338d0e7e3`](https://github.com/ElevenID/git-agent/commit/cc4478690a75cd991fef54724b4ceae338d0e7e3)
 passed the build, full test suite, and packaged smoke check in [CI run

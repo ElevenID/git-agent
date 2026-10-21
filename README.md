@@ -134,6 +134,13 @@ should be sparse; use PR discussion and Git blame for change history.
 The initializer preserves an existing `.gitignore`; adoption includes adding
 evidence and artifact ignore rules in the product repository.
 
+The worktree lifecycle separates retained branches from temporary checkouts.
+Reconcile relevant branches before creating more copies; reuse assigned trees,
+park clean inactive work after verifying its published checkpoint, and remove
+terminal or completed verification copies. Handoffs account for active, parked,
+removed and concretely deferred trees. Parking leaves the work open and does not
+waive review, human release approval, or protected merge checks.
+
 ## Preservation, reruns, and concurrent initialization
 
 Existing guidance is project content. Recognized governance, development,

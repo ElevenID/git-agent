@@ -49,8 +49,8 @@ Governing baseline, risk/review profile, pending control changes:
 Canonical repository/ref/path and integration owner:
 Status and next action:
 
-| Slice | Branch/ref | Writer/role | Plan revision | Dependencies | Included revision | PR/CI links |
-| --- | --- | --- | --- | --- | --- | --- |
+| Slice | Branch/ref | Writer/role | Plan revision | Dependencies | Included revision | PR/CI links | Checkout disposition / next action |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 Progress, discoveries, consequential decisions, blockers:
 Candidate S and relevant base/inputs:
@@ -85,6 +85,14 @@ Integrate small accepted increments early while the goal remains open, respectin
 the target's gates. Refresh dependent branches when contracts/base inputs change.
 Changed relevant inputs reopen verification/review. At start, resume and handoff,
 review stale assignments, dependencies, exceptions, and active-work limits.
+
+Before creating another checkout and at handoff, reconcile the goal's branches
+with their actual PR decisions and source. Select accepted integration work and
+record terminal alternatives; do not merge every experiment. Track checkout
+disposition in the existing branch table: active with owner, safely parked with
+published checkpoint, removed, or deferred with a concrete blocker/owner. A
+pending PR does not require an idle checkout; parking preserves the branch and
+its unfinished next action. Follow the worktree-flow safety/recovery reference.
 
 Handoff records the writing owner/session, checkpoint, owned resources and next
 action. Reconcile an uncertain old writer before takeover. Publish source branch

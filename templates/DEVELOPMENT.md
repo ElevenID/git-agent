@@ -57,6 +57,35 @@ commits. If using a stash, retain its exact object identity and owner; never use
 an unqualified latest stash. Preserve Git's same-branch safeguards and retain
 required work before cleanup or rewriting refs.
 
+## Branch reconciliation and checkout retention
+
+At start/resume, before creating another checkout, and at handoff, inspect native
+Git worktree listings and the goal's current branches/PRs. Reuse the appropriate
+assigned checkout after reconciling its writer. Keep one canonical integration
+branch per accepted integration stream; create leaf or verification checkouts
+only for an actual isolation need, with an owner and completion/removal event.
+
+Classify relevant branches as integrated, accepted work awaiting integration,
+explicitly superseded/cancelled, or unresolved local work. Verify current PR heads
+and target ancestry/content, including squash/rebase and differently named
+integration branches. A merge into an unmerged feature target is not a main
+integration. Select accepted changes with the integration owner; reconcile
+overlapping alternatives rather than merging all of them. Continue authorized
+work through its review/check/merge gates, or name the real blocker and owner.
+
+A branch may outlive its checkout. Publish and verify an authorized checkpoint,
+preserve required source/decisions/evidence, then park a clean inactive checkout
+while its PR awaits review or approval. Retain its branch and next action; parking
+does not complete or cancel the work. Missing publication authority or recovery
+coverage requires a reported retention decision, not silent local-only cleanup.
+
+Remove terminal merged/superseded/cancelled checkouts and completed verification
+copies using the safety checks in `$worktree-flow`'s recovery reference. Keep
+active, dirty, or data-bearing copies until their concrete blocker is resolved.
+Account for active, parked, removed and deferred copies in existing goal/PR
+records; report primary/linked counts for the inspected scope. Do not add a
+second registry, scheduler, forced cleanup, or automatic merge/release bypass.
+
 ## Evidence and CI economy
 
 Live-reload checks may use changing files; label them exploratory and identify

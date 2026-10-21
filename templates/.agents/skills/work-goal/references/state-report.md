@@ -13,6 +13,7 @@ Accepted plan/governing revision; pending control/scope changes:
 Applicable quality, validation and risk/review policy:
 Integration owner and candidate S/base:
 Branches: writer, included revision, dependencies, current next action:
+Worktrees: active/parked/removed/deferred; exact refs, blocker/owner, inspected primary/linked counts:
 Live instances: actual scopes/ownership or stopped:
 
 Verification: criteria/checks passed, failed, missing; exact evidence:
@@ -31,7 +32,7 @@ Recovery: canonical goal ref plus EVERY included source branch/component:
 Confirmed remote revisions/time/age and PR/CI links:
 Coverage: complete for listed scope or explicit missing parts:
 RPO/RTO targets and measured drill evidence or gap:
-Local-only evidence while work is open; cleanup after merge:
+Local-only evidence while work is open; checkpoint/parking and terminal cleanup:
 
 Next action, responsible owner, and concrete decision needed if any:
 ```
