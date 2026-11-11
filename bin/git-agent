@@ -3,8 +3,8 @@
 # Runtime core for the standalone Bash bundle. tools/build.sh appends literal
 # template functions and the single main dispatch. Bash 3.2 syntax only.
 
-GA_VERSION=0.2.1
-GA_TEMPLATE_VERSION=0.2.1
+GA_VERSION=0.2.2
+GA_TEMPLATE_VERSION=0.2.2
 GA_MAX_FILES=5000
 GA_MAX_BYTES=2097152
 
@@ -726,7 +726,9 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    rules; never let a candidate weaken the conditions for its own acceptance.
 3. Resolve integration and branch writers, repository administration ownership,
    dependencies, stale/blocked work, exceptions, capacity, and recovery gaps.
-   Reconcile an uncertain old writer before takeover.
+   Reconcile relevant existing branches/PRs before creating more alternatives;
+   identify the canonical integration stream and selected changes. Reconcile an
+   uncertain old writer before takeover.
 4. Select the next ready authorized slice and its affected products/evidence.
    Refine steps within scope. If required intent, authority, or setup is missing,
    prepare the concrete proposal/gap and continue independent authorized work;
@@ -747,7 +749,9 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
 6. Update each branch's own progress, decisions, blockers, evidence, and next
    action. Let the integration owner maintain canonical goal state. Integrate
    small accepted increments early, refresh affected dependents, and preserve
-   the target's applicable gates.
+   the target's applicable gates. Continue authorized review/check/merge work
+   until complete or a concrete gate needs another owner or decision; opening
+   a PR alone is a checkpoint, not completion.
 7. Assemble the combined candidate S with fixed source/base/configuration and
    required inputs. Hold them stable during acceptance checks. Verify selected
    required checks and intended-use validation. Treat live-edit results as
@@ -763,6 +767,11 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
    Missing reviews do not count. A fix creates a new candidate; renew applicable
    verification and current review coverage. Stop at R rounds with
    `needs-decision` if blockers remain. Do not silently quarantine criteria.
+   Inspect PR review threads and general comments, including automated findings;
+   correct valid issues and record a disposition for each substantive concern.
+   An authorized human maintainer may accept an evidence-backed false positive
+   or deferral when the original commenter is unavailable. Do not merge with an
+   unresolved blocker or claim an unconfigured conversation-resolution gate.
 10. Checkpoint meaningful increments and before handoff/cleanup. Follow the
     worktree-flow recovery reference: push source and goal records, and link
     reviewable PR/CI evidence without committing generated evidence or artifacts.
@@ -779,11 +788,15 @@ description: Execute or resume accepted feature, defect, maintenance, incident, 
     state derived from maintained records. Preserve cancelled/superseded reasons,
     checkpoints and replacement links. Never confuse ready, human-approved,
     published, healthy, or remotely recoverable.
-13. After work merges or reaches terminal cancellation/supersession, remove its
-    local generated evidence and artifacts, including obsolete worktree copies.
-    Preserve the outcome decision, merged source when applicable, and PR/CI
-    links first. Do not delete another owner's files or a separately required
-    release/operational record.
+13. Reconcile the goal's checkouts at every handoff through `$worktree-flow`:
+    active with owner/next action, parked with verified checkpoint, removed,
+    or deferred with a concrete data/activity/recovery blocker and owner.
+    Unfinished branches may be retained without idle full checkouts after safe
+    publication/parking; their work remains open. After merge or explicit terminal
+    supersession/cancellation, preserve the outcome and PR/CI links, then remove
+    obsolete checkout copies and transient generated artifacts. Account for
+    completed verification copies too. Preserve another owner's files, needed
+    review evidence and separately required release/operational records.
 
 Use Git, OS, VS Code, Codex and existing product commands directly. Do not create
 a scheduler, execution adapter, state database, third skill, or new command
@@ -959,6 +972,7 @@ Accepted plan/governing revision; pending control/scope changes:
 Applicable quality, validation and risk/review policy:
 Integration owner and candidate S/base:
 Branches: writer, included revision, dependencies, current next action:
+Worktrees: active/parked/removed/deferred; exact refs, blocker/owner, inspected primary/linked counts:
 Live instances: actual scopes/ownership or stopped:
 
 Verification: criteria/checks passed, failed, missing; exact evidence:
@@ -977,7 +991,7 @@ Recovery: canonical goal ref plus EVERY included source branch/component:
 Confirmed remote revisions/time/age and PR/CI links:
 Coverage: complete for listed scope or explicit missing parts:
 RPO/RTO targets and measured drill evidence or gap:
-Local-only evidence while work is open; cleanup after merge:
+Local-only evidence while work is open; checkpoint/parking and terminal cleanup:
 
 Next action, responsible owner, and concrete decision needed if any:
 ```
@@ -1009,10 +1023,12 @@ ownership, cleanup, checkpoints or restoration.
 2. Reconcile stale assignments, old processes, interrupted work and uncertain
    writers. Confirm the repository administration owner for shared config/ref
    mutations. Preserve other worktrees' state, intentional staged work and
-   uncommitted changes. A worktree lock is not an agent semaphore.
-3. Create or resume the assigned branch with native Git from its recorded base.
-   Confirm resulting checkout identity. Use a fresh assigned verification
-   worktree when stable input checks need one; do not invent command wrappers.
+   uncommitted changes. Inspect the goal's current PRs and overlapping branches
+   before creating another copy. A worktree lock is not an agent semaphore.
+3. Prefer resuming the suitable assigned checkout. Create another only for an
+   actual isolation or fixed-candidate need, with an owner and removal event;
+   use detached verification checkouts when a new branch is unnecessary. Use
+   native Git from the recorded base and confirm resulting checkout identity.
 4. Restore the documented native toolchain/dependencies/fixtures/configuration.
    Check applicable submodule, LFS, hooks, private setup and material local/CI
    differences. Report missing setup as explicit product work.
@@ -1027,9 +1043,12 @@ ownership, cleanup, checkpoints or restoration.
    and handoff, and give the integration owner exact revisions/evidence. Confirm
    branch publication and PR/CI links before coordinating the whole-goal checkpoint.
 8. Stop/clean only owned processes and scoped resources. Preserve required source
-   refs first; reconcile partial cleanup, leaving other worktrees usable.
+   refs first; reconcile the goal's checkouts at every handoff as active with
+   owner, parked with verified checkpoint, removed, or deferred with a concrete
+   blocker and next action. Clean completed verification copies too. Follow the
+   recovery reference for safe parking/removal, leaving other worktrees usable.
    Report endpoint/resource state, evidence, remote coverage, local-only remainder
-   and next action.
+   and primary/linked checkout counts for the inspected scope.
 
 Use OS, Git, Codex, VS Code and existing product facilities. Missing isolation
 parameters belong in planned product changes. Do not add a daemon, global lock
@@ -1097,18 +1116,59 @@ deletion/rewrite. Retrieve indispensable artifacts; saved URLs alone are not pro
 Review publication for credentials/sensitive data. Hosted logs may expire; do
 not claim durable recovery from a link alone.
 
-## Close an assigned worktree safely
+## Reconcile branches before retaining more checkouts
+
+Use the existing goal/PR record for the canonical integration branch, branch
+writer, exact checkpoint, PR/dependencies, disposition and next action. Inspect
+the relevant native Git worktree list before creating another dated copy.
+Resume an appropriate assigned checkout after checking its writer; a separate
+verification copy needs an owner and a completion/removal event.
+
+Distinguish integrated work, accepted changes awaiting integration, explicit
+terminal supersession/cancellation, and unresolved local changes. Check current
+PR decisions and exact commits/content, including squash/rebase and integration
+under a different branch name. A merged PR against an unmerged feature branch
+does not establish main integration. Keep later/divergent work recoverable and
+give it its own disposition. With the integration owner, consolidate selected
+accepted changes, refresh dependencies, and renew checks/review on the result.
+An age, green check, closed PR, or matching branch name alone is insufficient.
+Do not merge rejected alternatives or bypass approval to reduce checkout count.
+
+## Park or close an assigned worktree safely
+
+A pending PR does not require a full idle checkout. To park unfinished work,
+publish and verify the authorized checkpoint using the preceding recovery
+procedure, retain its branch/ref and existing goal/PR record, and record the
+remaining work and owner. Preserve any required local review material before
+removal; do not silently relocate private data. If recovery coverage or
+publication authority is missing, retain the tree and report the concrete gap
+unless the user explicitly accepts local-only retention. Parking is not a merge,
+cancellation, or claim that the goal is complete.
 
 Immediately before removal, use Git to confirm the target path, branch, current
-head, assigned owner, and clean status. Confirm that the exact work is integrated
-  or intentionally abandoned and that required source refs and PR decisions are
-  retained. A branch name or stale earlier audit does not prove integration; a
-squash merge needs evidence tied to its exact reviewed head.
+head, assigned owner, and clean status, including staged, untracked and ignored
+files. Confirm the integrated/terminal disposition or the recoverable parking
+checkpoint and retain its decisions/source refs. A squash merge needs evidence
+tied to its exact reviewed head. Inspect ignored config, secrets, evidence and
+other data; Git-clean does not make them disposable. Only verified inactive
+rebuildable caches may be discarded. Preserve active processes/runtime mounts,
+locked worktrees, nested checkouts and primary checkouts. Retain detached commits
+with recovery refs when otherwise unprotected.
 
 Inspect and close one assigned worktree at a time, from outside that worktree.
 Never force-remove it, delete its files directly, or delete its branch before
-worktree removal succeeds. If ownership, integration, cleanliness, or retention
-is uncertain, keep the worktree and report the blocker and next action.
+worktree removal succeeds. Branch deletion needs separate authority even after
+successful removal. For bulk cleanup, save paths, branches, exact heads, recovery
+refs and disposition evidence first. Verify unregistration/removal and retained
+refs afterwards. If ownership, disposition, cleanliness, or retention is uncertain,
+keep the worktree and report the blocker, responsible owner and next action.
+
+At handoff, account for each goal checkout as active with owner/next action,
+parked with verified checkpoint, removed after terminal work, or deferred for a
+concrete blocker. Include completed verification copies and primary/linked
+counts for the inspected repositories. A merge or completed test does not
+complete its checkout cleanup. Use native Git and existing records; this is not
+an unattended cleanup service or a second work-state registry.
 
 ## Resume after workstation loss
 
@@ -1249,10 +1309,15 @@ and the assigned plan; keep this file a short entry point.
   changes. Evaluate proposed changes to controls under the accepted baseline.
 - Keep one writer per branch/worktree. Coordinate shared Git administration
   through its assigned owner; integrate through the goal's integration owner.
+- Reconcile relevant branches before creating more checkouts. At handoff, account
+  for every goal checkout as active, safely parked, removed, or concretely
+  deferred; follow the lifecycle in `{{DEVELOPMENT_PATH}}` and `$worktree-flow`.
 - Use maintained native commands and scoped development resources. Check actual
   permissions; prose and separate checkouts do not establish isolation.
 - Verify the combined fixed candidate, preserve real evidence, and complete the
   configured independent reviews. Changed relevant inputs reopen their checks.
+- Address substantive PR comments, resolve review conversations, and verify
+  dispositions on the current candidate before merge.
 - Keep generated evidence, logs, screenshots, and build artifacts out of Git.
   Link relevant PR and CI results while work is open; remove local copies after
   the work merges or is cancelled or superseded, after required records are
@@ -1385,6 +1450,35 @@ commits. If using a stash, retain its exact object identity and owner; never use
 an unqualified latest stash. Preserve Git's same-branch safeguards and retain
 required work before cleanup or rewriting refs.
 
+## Branch reconciliation and checkout retention
+
+At start/resume, before creating another checkout, and at handoff, inspect native
+Git worktree listings and the goal's current branches/PRs. Reuse the appropriate
+assigned checkout after reconciling its writer. Keep one canonical integration
+branch per accepted integration stream; create leaf or verification checkouts
+only for an actual isolation need, with an owner and completion/removal event.
+
+Classify relevant branches as integrated, accepted work awaiting integration,
+explicitly superseded/cancelled, or unresolved local work. Verify current PR heads
+and target ancestry/content, including squash/rebase and differently named
+integration branches. A merge into an unmerged feature target is not a main
+integration. Select accepted changes with the integration owner; reconcile
+overlapping alternatives rather than merging all of them. Continue authorized
+work through its review/check/merge gates, or name the real blocker and owner.
+
+A branch may outlive its checkout. Publish and verify an authorized checkpoint,
+preserve required source/decisions/evidence, then park a clean inactive checkout
+while its PR awaits review or approval. Retain its branch and next action; parking
+does not complete or cancel the work. Missing publication authority or recovery
+coverage requires a reported retention decision, not silent local-only cleanup.
+
+Remove terminal merged/superseded/cancelled checkouts and completed verification
+copies using the safety checks in `$worktree-flow`'s recovery reference. Keep
+active, dirty, or data-bearing copies until their concrete blocker is resolved.
+Account for active, parked, removed and deferred copies in existing goal/PR
+records; report primary/linked counts for the inspected scope. Do not add a
+second registry, scheduler, forced cleanup, or automatic merge/release bypass.
+
 ## Evidence and CI economy
 
 Live-reload checks may use changing files; label them exploratory and identify
@@ -1408,6 +1502,7 @@ in the PR.
 | Combined candidate | Fixed inputs and the selected required verification set |
 | Reviewer | Independent inspection and warranted targeted checks |
 | Candidate change | Renew applicable verification/review coverage |
+| PR feedback | Reproduce findings, correct valid issues, verify the new head, and record dispositions |
 | Version release | Actual merged-source, artifact, demo and promotion checks |
 
 Use architecture's impact map, including transitive consumers and changed
@@ -1417,6 +1512,15 @@ Maintain a stable aggregate required integration check that validates selection
 and success of every selected required check, including module/interface checks
 and product lanes. Missing, skipped, cancelled and failed selected checks do not
 pass. Verify merge-queue candidates where applicable.
+
+Before handing off a PR for merge, read its current inline and general comments,
+automated findings, and check failures. Follow the PR feedback decision rule in
+`{{GOVERNANCE_PATH}}`: fix valid issues on the branch, add meaningful regression
+coverage where warranted, run affected checks on the corrected head, and reply
+with evidence. Reopen applicable review after material changes. Check that every
+review conversation is resolved and no substantive general comment remains
+undispositioned. Preserve the human maintainer's acceptance of any evidence-backed
+false positive or deferral; do not wait indefinitely for an unavailable bot.
 
 Use distinct checkpoint/candidate/release triggers. An open PR may run CI on
 every push; use explicit retained checkpoint refs when needed and advance the
@@ -1559,6 +1663,32 @@ Before claiming ready, require the selected checks, all N completed applicable
 reviews, resolved blockers, applicable intended-use validation, and current
 exception dispositions for the candidate.
 
+## PR feedback and merge readiness
+
+Inspect every current PR review thread, general comment, automated finding,
+security alert, and failed check before merge. Distinguish informational status
+messages from substantive concerns. Reproduce and correct valid defects on the
+PR branch, run focused regression checks and affected gates on the combined
+corrected head, and reply with the fix and evidence. An outdated diff location,
+passing check, or later approval does not by itself dispose of a reported defect.
+
+Resolve each review conversation only after its concern is corrected and
+verified, or an evidence-backed no-change or deferral decision is accepted by
+an authorized human maintainer. The original commenter need not be available:
+one-shot bots and absent reviewers do not have an indefinite veto. Record who
+accepted the disposition, why, and any follow-up owner and reconsideration
+trigger. A real unresolved blocker remains open; if no authorized maintainer can
+decide it, mark the candidate `needs-decision` and do not merge. For substantive
+general comments without a resolution control, record the same disposition in
+a reply and inspect the conversation again before merge.
+
+Require GitHub conversation resolution on every PR target branch where native
+protection is supported. Verify the effective branch rule, administrator and
+bypass behavior, and current unresolved-thread state; prose and a workflow file
+do not activate a GitHub merge gate. Where the hosting plan cannot enforce it,
+the designated human merge reviewer must check the comments and dispositions
+manually. Do not claim technical enforcement for an unprotected branch.
+
 ## Actual capabilities
 
 | Activity | Intended boundary; verify with native controls |
@@ -1654,8 +1784,8 @@ Governing baseline, risk/review profile, pending control changes:
 Canonical repository/ref/path and integration owner:
 Status and next action:
 
-| Slice | Branch/ref | Writer/role | Plan revision | Dependencies | Included revision | PR/CI links |
-| --- | --- | --- | --- | --- | --- | --- |
+| Slice | Branch/ref | Writer/role | Plan revision | Dependencies | Included revision | PR/CI links | Checkout disposition / next action |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 Progress, discoveries, consequential decisions, blockers:
 Candidate S and relevant base/inputs:
@@ -1690,6 +1820,14 @@ Integrate small accepted increments early while the goal remains open, respectin
 the target's gates. Refresh dependent branches when contracts/base inputs change.
 Changed relevant inputs reopen verification/review. At start, resume and handoff,
 review stale assignments, dependencies, exceptions, and active-work limits.
+
+Before creating another checkout and at handoff, reconcile the goal's branches
+with their actual PR decisions and source. Select accepted integration work and
+record terminal alternatives; do not merge every experiment. Track checkout
+disposition in the existing branch table: active with owner, safely parked with
+published checkpoint, removed, or deferred with a concrete blocker/owner. A
+pending PR does not require an idle checkout; parking preserves the branch and
+its unfinished next action. Follow the worktree-flow safety/recovery reference.
 
 Handoff records the writing owner/session, checkpoint, owned resources and next
 action. Reconcile an uncertain old writer before takeover. Publish source branch

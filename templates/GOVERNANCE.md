@@ -88,6 +88,32 @@ Before claiming ready, require the selected checks, all N completed applicable
 reviews, resolved blockers, applicable intended-use validation, and current
 exception dispositions for the candidate.
 
+## PR feedback and merge readiness
+
+Inspect every current PR review thread, general comment, automated finding,
+security alert, and failed check before merge. Distinguish informational status
+messages from substantive concerns. Reproduce and correct valid defects on the
+PR branch, run focused regression checks and affected gates on the combined
+corrected head, and reply with the fix and evidence. An outdated diff location,
+passing check, or later approval does not by itself dispose of a reported defect.
+
+Resolve each review conversation only after its concern is corrected and
+verified, or an evidence-backed no-change or deferral decision is accepted by
+an authorized human maintainer. The original commenter need not be available:
+one-shot bots and absent reviewers do not have an indefinite veto. Record who
+accepted the disposition, why, and any follow-up owner and reconsideration
+trigger. A real unresolved blocker remains open; if no authorized maintainer can
+decide it, mark the candidate `needs-decision` and do not merge. For substantive
+general comments without a resolution control, record the same disposition in
+a reply and inspect the conversation again before merge.
+
+Require GitHub conversation resolution on every PR target branch where native
+protection is supported. Verify the effective branch rule, administrator and
+bypass behavior, and current unresolved-thread state; prose and a workflow file
+do not activate a GitHub merge gate. Where the hosting plan cannot enforce it,
+the designated human merge reviewer must check the comments and dispositions
+manually. Do not claim technical enforcement for an unprotected branch.
+
 ## Actual capabilities
 
 | Activity | Intended boundary; verify with native controls |

@@ -388,6 +388,43 @@ test_linked_worktree_preserves_shared_administration() {
     snapshot "$linked" "$CASE_DIR/after"; same "$CASE_DIR/before" "$CASE_DIR/after"
 }
 
+test_published_branch_can_be_parked_without_merging_or_losing_work() {
+    repository 'lifecycle main' commit
+    local main=$TARGET linked="$SPACE/parked worktree" remote="$SPACE/checkpoint.git" head remote_head ignored
+    fixture_git init --bare --quiet --initial-branch=main "$remote"
+    fixture_git -C "$main" remote add origin "$remote"
+    fixture_git -C "$main" push --quiet --set-upstream origin main
+    fixture_git -C "$main" worktree add --quiet -b work/parked "$linked"
+    cli init "$linked"; expect_status 0; assert_scaffold "$linked"
+    printf 'recoverable unfinished work\n' >"$linked/feature.txt"
+    printf '.env\n' >"$linked/.gitignore"
+    fixture_git -C "$linked" add --all
+    commit_fixture "$linked" 'Publish unfinished fixture checkpoint'
+    head=$(fixture_git -C "$linked" rev-parse HEAD)
+    fixture_git -C "$linked" push --quiet --set-upstream origin work/parked
+    remote_head=$(fixture_git --git-dir="$remote" rev-parse refs/heads/work/parked)
+    [[ $head == "$remote_head" ]] || fail 'Published checkpoint differs from local head.'
+    if fixture_git -C "$main" merge-base --is-ancestor "$head" main; then
+        fail 'Fixture work was unexpectedly merged before parking.'
+    fi
+    fixture_git -C "$main" worktree remove -- "$linked"
+    [[ ! -e $linked ]] || fail 'Parked checkout still exists.'
+    [[ $(fixture_git -C "$main" rev-parse refs/heads/work/parked) == "$head" ]] || fail 'Parking lost its branch.'
+    [[ $(fixture_git -C "$main" worktree list --porcelain) != *"worktree $linked"* ]] || fail 'Parked checkout is still registered.'
+    fixture_git -C "$main" worktree add --quiet "$linked" work/parked
+    [[ $(fixture_git -C "$linked" rev-parse HEAD) == "$head" ]] || fail 'Resumed checkout changed the checkpoint.'
+    contains "$linked/feature.txt" 'recoverable unfinished work'
+    printf 'preserve local notes\n' >"$linked/local-notes.txt"
+    printf 'synthetic fixture configuration\n' >"$linked/.env"
+    ignored=$(fixture_git -C "$linked" ls-files --others --ignored --exclude-standard)
+    [[ $ignored == .env ]] || fail 'Ignored local configuration was not discoverable.'
+    run "$main" git worktree remove -- "$linked"
+    [[ $RC -ne 0 ]] || fail 'Native no-force removal accepted an untracked local file.'
+    contains "$linked/local-notes.txt" 'preserve local notes'
+    contains "$linked/.env" 'synthetic fixture configuration'
+    [[ $(fixture_git -C "$main" rev-parse refs/heads/work/parked) == "$head" ]] || fail 'Refusal changed the retained source ref.'
+}
+
 test_existing_native_configuration_and_guidance_are_preserved() {
     local relative
     repository repo
@@ -950,6 +987,7 @@ TESTS=(
     test_same_version_rerun_is_exact_noop
     test_template_identity_is_stable_in_sha256_repository
     test_linked_worktree_preserves_shared_administration
+    test_published_branch_can_be_parked_without_merging_or_losing_work
     test_existing_native_configuration_and_guidance_are_preserved
     test_unstaged_instruction_deletion_is_preserved
     test_staged_instruction_deletion_is_preserved

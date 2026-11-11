@@ -17,10 +17,12 @@ ownership, cleanup, checkpoints or restoration.
 2. Reconcile stale assignments, old processes, interrupted work and uncertain
    writers. Confirm the repository administration owner for shared config/ref
    mutations. Preserve other worktrees' state, intentional staged work and
-   uncommitted changes. A worktree lock is not an agent semaphore.
-3. Create or resume the assigned branch with native Git from its recorded base.
-   Confirm resulting checkout identity. Use a fresh assigned verification
-   worktree when stable input checks need one; do not invent command wrappers.
+   uncommitted changes. Inspect the goal's current PRs and overlapping branches
+   before creating another copy. A worktree lock is not an agent semaphore.
+3. Prefer resuming the suitable assigned checkout. Create another only for an
+   actual isolation or fixed-candidate need, with an owner and removal event;
+   use detached verification checkouts when a new branch is unnecessary. Use
+   native Git from the recorded base and confirm resulting checkout identity.
 4. Restore the documented native toolchain/dependencies/fixtures/configuration.
    Check applicable submodule, LFS, hooks, private setup and material local/CI
    differences. Report missing setup as explicit product work.
@@ -35,9 +37,12 @@ ownership, cleanup, checkpoints or restoration.
    and handoff, and give the integration owner exact revisions/evidence. Confirm
    branch publication and PR/CI links before coordinating the whole-goal checkpoint.
 8. Stop/clean only owned processes and scoped resources. Preserve required source
-   refs first; reconcile partial cleanup, leaving other worktrees usable.
+   refs first; reconcile the goal's checkouts at every handoff as active with
+   owner, parked with verified checkpoint, removed, or deferred with a concrete
+   blocker and next action. Clean completed verification copies too. Follow the
+   recovery reference for safe parking/removal, leaving other worktrees usable.
    Report endpoint/resource state, evidence, remote coverage, local-only remainder
-   and next action.
+   and primary/linked checkout counts for the inspected scope.
 
 Use OS, Git, Codex, VS Code and existing product facilities. Missing isolation
 parameters belong in planned product changes. Do not add a daemon, global lock

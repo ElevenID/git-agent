@@ -5,7 +5,7 @@ Codex extension. The command places reviewable guidance and two instruction-only
 skills beside the code, identifies adoption gaps, and preserves existing project
 content.
 
-**Version 0.2.1 is one Bash executable with embedded templates.** Running,
+**Version 0.2.2 is one Bash executable with embedded templates.** Running,
 building, installing, and testing it uses Bash, Git, and the ordinary Unix
 utilities supplied by the supported shell environment. It requires no Python,
 Node.js, jq, package manager, language libraries, agent service, or custom daemon.
@@ -133,6 +133,13 @@ Git; remove local generated copies after work merges or is cancelled or supersed
 should be sparse; use PR discussion and Git blame for change history.
 The initializer preserves an existing `.gitignore`; adoption includes adding
 evidence and artifact ignore rules in the product repository.
+
+The worktree lifecycle separates retained branches from temporary checkouts.
+Reconcile relevant branches before creating more copies; reuse assigned trees,
+park clean inactive work after verifying its published checkpoint, and remove
+terminal or completed verification copies. Handoffs account for active, parked,
+removed and concretely deferred trees. Parking leaves the work open and does not
+waive review, human release approval, or protected merge checks.
 
 ## Preservation, reruns, and concurrent initialization
 

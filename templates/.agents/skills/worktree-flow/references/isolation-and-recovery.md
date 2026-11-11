@@ -58,18 +58,59 @@ deletion/rewrite. Retrieve indispensable artifacts; saved URLs alone are not pro
 Review publication for credentials/sensitive data. Hosted logs may expire; do
 not claim durable recovery from a link alone.
 
-## Close an assigned worktree safely
+## Reconcile branches before retaining more checkouts
+
+Use the existing goal/PR record for the canonical integration branch, branch
+writer, exact checkpoint, PR/dependencies, disposition and next action. Inspect
+the relevant native Git worktree list before creating another dated copy.
+Resume an appropriate assigned checkout after checking its writer; a separate
+verification copy needs an owner and a completion/removal event.
+
+Distinguish integrated work, accepted changes awaiting integration, explicit
+terminal supersession/cancellation, and unresolved local changes. Check current
+PR decisions and exact commits/content, including squash/rebase and integration
+under a different branch name. A merged PR against an unmerged feature branch
+does not establish main integration. Keep later/divergent work recoverable and
+give it its own disposition. With the integration owner, consolidate selected
+accepted changes, refresh dependencies, and renew checks/review on the result.
+An age, green check, closed PR, or matching branch name alone is insufficient.
+Do not merge rejected alternatives or bypass approval to reduce checkout count.
+
+## Park or close an assigned worktree safely
+
+A pending PR does not require a full idle checkout. To park unfinished work,
+publish and verify the authorized checkpoint using the preceding recovery
+procedure, retain its branch/ref and existing goal/PR record, and record the
+remaining work and owner. Preserve any required local review material before
+removal; do not silently relocate private data. If recovery coverage or
+publication authority is missing, retain the tree and report the concrete gap
+unless the user explicitly accepts local-only retention. Parking is not a merge,
+cancellation, or claim that the goal is complete.
 
 Immediately before removal, use Git to confirm the target path, branch, current
-head, assigned owner, and clean status. Confirm that the exact work is integrated
-  or intentionally abandoned and that required source refs and PR decisions are
-  retained. A branch name or stale earlier audit does not prove integration; a
-squash merge needs evidence tied to its exact reviewed head.
+head, assigned owner, and clean status, including staged, untracked and ignored
+files. Confirm the integrated/terminal disposition or the recoverable parking
+checkpoint and retain its decisions/source refs. A squash merge needs evidence
+tied to its exact reviewed head. Inspect ignored config, secrets, evidence and
+other data; Git-clean does not make them disposable. Only verified inactive
+rebuildable caches may be discarded. Preserve active processes/runtime mounts,
+locked worktrees, nested checkouts and primary checkouts. Retain detached commits
+with recovery refs when otherwise unprotected.
 
 Inspect and close one assigned worktree at a time, from outside that worktree.
 Never force-remove it, delete its files directly, or delete its branch before
-worktree removal succeeds. If ownership, integration, cleanliness, or retention
-is uncertain, keep the worktree and report the blocker and next action.
+worktree removal succeeds. Branch deletion needs separate authority even after
+successful removal. For bulk cleanup, save paths, branches, exact heads, recovery
+refs and disposition evidence first. Verify unregistration/removal and retained
+refs afterwards. If ownership, disposition, cleanliness, or retention is uncertain,
+keep the worktree and report the blocker, responsible owner and next action.
+
+At handoff, account for each goal checkout as active with owner/next action,
+parked with verified checkpoint, removed after terminal work, or deferred for a
+concrete blocker. Include completed verification copies and primary/linked
+counts for the inspected repositories. A merge or completed test does not
+complete its checkout cleanup. Use native Git and existing records; this is not
+an unattended cleanup service or a second work-state registry.
 
 ## Resume after workstation loss
 

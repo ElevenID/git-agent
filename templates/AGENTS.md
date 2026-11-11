@@ -29,10 +29,15 @@ and the assigned plan; keep this file a short entry point.
   changes. Evaluate proposed changes to controls under the accepted baseline.
 - Keep one writer per branch/worktree. Coordinate shared Git administration
   through its assigned owner; integrate through the goal's integration owner.
+- Reconcile relevant branches before creating more checkouts. At handoff, account
+  for every goal checkout as active, safely parked, removed, or concretely
+  deferred; follow the lifecycle in `{{DEVELOPMENT_PATH}}` and `$worktree-flow`.
 - Use maintained native commands and scoped development resources. Check actual
   permissions; prose and separate checkouts do not establish isolation.
 - Verify the combined fixed candidate, preserve real evidence, and complete the
   configured independent reviews. Changed relevant inputs reopen their checks.
+- Address substantive PR comments, resolve review conversations, and verify
+  dispositions on the current candidate before merge.
 - Keep generated evidence, logs, screenshots, and build artifacts out of Git.
   Link relevant PR and CI results while work is open; remove local copies after
   the work merges or is cancelled or superseded, after required records are
